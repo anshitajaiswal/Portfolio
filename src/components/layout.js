@@ -11,25 +11,15 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+const Layout = ({ children, aboutRef, projectRef , contactRef, theme, toggleTheme }) => {
+  
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header style={{zIndex:40}} aboutRef={aboutRef} projectRef={projectRef} contactRef={contactRef} theme={theme} toggleTheme={toggleTheme} />
       <div
         style={{
-          margin: `0 auto`,
-          maxWidth: `var(--size-content)`,
-          padding: `var(--size-gutter)`,
+          
         }}
       >
         <main>{children}</main>

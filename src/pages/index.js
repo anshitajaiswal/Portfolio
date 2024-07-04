@@ -1,122 +1,148 @@
 import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-
+import styled from "styled-components"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import * as styles from "../components/index.module.css"
+import keyframes from "styled-components"
+import Stars from "../components/stars"
+import {useRef, useState, useEffect } from "react"
+import CubePage from "../components/cube"
+import AboutPage from "../components/About"
+import ProjectPage from "../components/projects"
+import ContactPage from "../components/ContactPage"
+import Footer from "../components/footer"
+import { Cloud2, Clouds2 } from "../components/Cloud2";
+import Title from "../images/Title.png"
 
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-  },
-  {
-    text: "Examples",
-    url: "https://github.com/gatsbyjs/gatsby/tree/master/examples",
-    description:
-      "A collection of websites ranging from very basic to complex/complete that illustrate how to accomplish specific tasks within your Gatsby sites.",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Learn how to add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-  },
-]
 
-const samplePageLinks = [
-  {
-    text: "Page 2",
-    url: "page-2",
-    badge: false,
-    description:
-      "A simple example of linking to another page within a Gatsby site",
-  },
-  { text: "TypeScript", url: "using-typescript" },
-  { text: "Server Side Rendering", url: "using-ssr" },
-  { text: "Deferred Static Generation", url: "using-dsg" },
-]
+const MainContainer = styled.div`
+  width: 1340px;
+  height: 600px;
+  position: fixed;
+  z-index: 1;
+  overflow: hidden;
+`;
 
-const moreLinks = [
-  { text: "Join us on Discord", url: "https://gatsby.dev/discord" },
-  {
-    text: "Documentation",
-    url: "https://gatsbyjs.com/docs/",
-  },
-  {
-    text: "Starters",
-    url: "https://gatsbyjs.com/starters/",
-  },
-  {
-    text: "Showcase",
-    url: "https://gatsbyjs.com/showcase/",
-  },
-  {
-    text: "Contributing",
-    url: "https://www.gatsbyjs.com/contributing/",
-  },
-  { text: "Issues", url: "https://github.com/gatsbyjs/gatsby/issues" },
-]
+const AboutContainer = styled.div`
+  width: 1340px;
+  height: 4480px;
+  position: absolute;
+  top: 600px;
+  left: 0;
+  transition: top 0.5s ease-in;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+`;
 
-const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
+const FooterContainer = styled.div`
+  width: 1318px;
+  position: absolute;
+  z-index: 20;
+  padding-top: 60px;
+  bottom: 0px;
+`;
 
-const IndexPage = () => (
-  <Layout>
-    <div className={styles.textCenter}>
-      <StaticImage
-        src="../images/example.png"
-        loading="eager"
-        width={64}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt=""
-        style={{ marginBottom: `var(--space-3)` }}
-      />
-      <h1>
-        Welcome to <b>Gatsby!</b>
-      </h1>
-      <p className={styles.intro}>
-        <b>Example pages:</b>{" "}
-        {samplePageLinks.map((link, i) => (
-          <React.Fragment key={link.url}>
-            <Link to={link.url}>{link.text}</Link>
-            {i !== samplePageLinks.length - 1 && <> · </>}
-          </React.Fragment>
-        ))}
-        <br />
-        Edit <code>src/pages/index.js</code> to update this page.
-      </p>
-    </div>
-    <ul className={styles.list}>
-      {links.map(link => (
-        <li key={link.url} className={styles.listItem}>
-          <a
-            className={styles.listItemLink}
-            href={`${link.url}${utmParameters}`}
-          >
-            {link.text} ↗
-          </a>
-          <p className={styles.listItemDescription}>{link.description}</p>
-        </li>
-      ))}
-    </ul>
-    {moreLinks.map((link, i) => (
-      <React.Fragment key={link.url}>
-        <a href={`${link.url}${utmParameters}`}>{link.text}</a>
-        {i !== moreLinks.length - 1 && <> · </>}
-      </React.Fragment>
-    ))}
-  </Layout>
-)
+const ContentContainer = styled.div`
+  width: 100%;
+  padding: 0px;
+`;
+
+const Section = styled.section`
+  padding: 30px 15px;
+  min-height: 70vh;
+`;
+
+
+const bounce = keyframes`
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+`;
+
+const Arrow = styled.div`
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 0;
+  height: 0;
+  z-index:40;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 30px solid #999;
+  animation: ${bounce} 4s infinite;
+  cursor: pointer;
+`;
+
+const IndexPage = () => {
+  const aboutRef = useRef(null);
+  const projectRef = useRef(null);
+  const contactRef = useRef(null);
+  const [theme, setTheme] = useState("dark"); // Initial theme state
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+    console.log("Theme updated to:", theme);
+  };
+
+  useEffect(() => {
+    setBackgroundColor(theme === "dark" ? "#19191C" : "rgb(252,252,252)");
+    setBackgroundColorMain(theme === "dark" ? "#020408" : "#EBEEEE");
+  }, [theme]);
+
+  const [backgroundColor, setBackgroundColor] = useState(theme === "dark" ? "#19191C" : "rgb(252,252,252)");
+  const [backgroundColorMain, setBackgroundColorMain] = useState(theme === "dark" ? "#020408" : "#EBEEEE");
+  
+  const handleScrollToAbout = () => {
+    aboutRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <>
+  <Layout aboutRef={aboutRef} projectRef={projectRef} contactRef={contactRef} theme={theme} toggleTheme={toggleTheme}>
+    <MainContainer  style={{ backgroundColor: backgroundColorMain }}>
+        <Stars theme={theme} toggleTheme={toggleTheme} />
+        <CubePage/>
+          <p    style={{ marginRight: "40px", marginLeft: "900px", textAlign: "right", color: "#999", marginTop: "240px" }}>
+            Write a small introductory paragraph about yourself or you can add a quote here. You can also make this be at center instead.
+          </p>
+          <Cloud2 theme={theme} toggleTheme={toggleTheme} />
+          <Clouds2 theme={theme} toggleTheme={toggleTheme} />
+
+          <img src={Title} alt="Profile" style={{ width: "900px", height: "auto", marginTop:"120px", marginLeft:"200px" }}/>
+          
+          <Arrow onClick={handleScrollToAbout} />
+        
+      </MainContainer>
+  
+        <AboutContainer id="about-section" ref={aboutRef} style={{ backgroundColor: backgroundColor }}>
+          <ContentContainer>
+            <Section >
+              <AboutPage theme={theme} toggleTheme={toggleTheme} />
+            </Section>
+
+            <Section  ref={projectRef} >
+              <ProjectPage theme={theme} toggleTheme={toggleTheme} />
+              
+            </Section>
+
+            <Section  ref={contactRef}>
+              <ContactPage theme={theme} toggleTheme={toggleTheme} />
+            </Section>
+            <FooterContainer>
+              <Footer theme={theme} toggleTheme={toggleTheme} />
+            </FooterContainer>
+          </ContentContainer>
+        </AboutContainer>
+      </Layout>
+      
+  </>
+  );
+}
 
 /**
  * Head export to define metadata for the page
