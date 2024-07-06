@@ -108,7 +108,7 @@ const IndexPage = () => {
         <Stars theme={theme} toggleTheme={toggleTheme} />
         <CubePage/>
           <p    style={{ marginRight: "40px", marginLeft: "900px", textAlign: "right", color: "#999", marginTop: "240px" }}>
-            Write a small introductory paragraph about yourself or you can add a quote here. You can also make this be at center instead.
+          I am an enthusiastic learner with a knack for attention to detail. I am Interested in finding solutions to real-world problems. 
           </p>
           <Cloud2 theme={theme} toggleTheme={toggleTheme} />
           <Clouds2 theme={theme} toggleTheme={toggleTheme} />
