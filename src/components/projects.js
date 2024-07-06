@@ -311,7 +311,7 @@ const ProjectPage = ({ theme, toggleTheme }) => {
                 <Background left={10} top={-410} theme={theme} toggleTheme={toggleTheme}/>
                 <ProjectContent>
                   <h1>Tic-Tac-Toe</h1>
-                  <p>TDeveloped a Tic Tac Toe game in C++ featuring player vs player mode. </p>
+                  <p>Developed a Tic Tac Toe game in C++ featuring player vs player mode. </p>
                   
                   <LinkContainer />
                   <Text style={{ marginTop: "-35px", marginLeft: "35px" }}>
