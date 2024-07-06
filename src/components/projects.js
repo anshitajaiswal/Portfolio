@@ -221,7 +221,7 @@ const ProjectPage = ({ theme, toggleTheme }) => {
                 <Background left={10} top={-410} theme={theme} toggleTheme={toggleTheme}/>
                 <ProjectContent>
                   <h1>Gatsby Porfolio Template</h1>
-                  <p>As an intern at Kavach, I developed a gatsby starter portoflio template.</p>
+                  <p>As an intern at Kavach Networks, I developed a gatsby starter portoflio template.</p>
                   
                   <LinkContainer />
                   <Text style={{ marginTop: "-35px", marginLeft: "35px" }}>
