@@ -105,7 +105,7 @@ const IndexPage = () => {
     <>
   <Layout aboutRef={aboutRef} projectRef={projectRef} contactRef={contactRef} theme={theme} toggleTheme={toggleTheme}>
     <MainContainer  style={{ backgroundColor: backgroundColorMain }}>
-        <Stars theme={theme} toggleTheme={toggleTheme} />
+    <Stars theme={theme} toggleTheme={toggleTheme} />
         <CubePage/>
           <p    style={{ marginRight: "40px", marginLeft: "900px", textAlign: "right", color: "#999", marginTop: "240px" }}>
           I am an enthusiastic learner with a knack for attention to detail. I am Interested in finding solutions to real-world problems. 

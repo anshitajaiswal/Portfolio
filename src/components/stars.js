@@ -2,12 +2,6 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
 
-const color = {
-  blue4: "#15273C",
-  black: "#020408",
-  white: "#f8f8f2",
-  blue1: "#98BAE3",
-};
 
 const randomInRange = (min, max) => {
   return Math.random() * (max - min) + min;
@@ -96,6 +90,7 @@ const Star = styled.div`
   position: fixed;
   width: 2px;
   height: 2px;
+  z-index:30;
   margin-top: ${props => props.startY}px;
   left: ${props => props.startX}px;
   border-radius: 50%;
@@ -106,6 +101,7 @@ const Star2 = styled.div`
   position: fixed;
   width: 2px;
   height: 2px;
+  z-index:30;
   margin-top: ${props => props.startY2}px;
   left: ${props => props.startX2}px;
   border-radius: 50%;
@@ -116,6 +112,7 @@ const Star3 = styled.div`
   position: fixed;
   width: 2px;
   height: 2px;
+  z-index:30;
   margin-top: ${props => props.startY3}px;
   left: ${props => props.startX3}px;
   
@@ -127,6 +124,7 @@ const Star4 = styled.div`
   position: fixed;
   width: 2px;
   height: 2px;
+  z-index:30;
   margin-top: ${props => props.startY4}px;
   left: ${props => props.startX4}px;
 
@@ -137,6 +135,7 @@ const Star4 = styled.div`
 const Star5 = styled.div`
   position: fixed;
   width: 2px;
+  z-index:30;
   height: 2px;
   margin-top: ${props => props.startY5}px;
   left: ${props => props.startX5}px;
