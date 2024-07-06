@@ -186,7 +186,7 @@ const ProjectPage = ({ theme, toggleTheme }) => {
     <>
 
       <h1 style={{ marginLeft: "45px", fontSize: "40px", marginTop: "90px", color:"#6EBDE7" }}>Projects</h1>
-      <p style={{ marginLeft: "45px",color:"#888"}}>Add your or your company's projects here.</p>
+      <p style={{ marginLeft: "45px",color:"#888"}}>Things I've created so far, with some projects still being improved!</p>
       <Container style={{ marginTop: "90px", marginLeft: "120px" }}>
         <Line />
         <Container>
